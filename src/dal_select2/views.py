@@ -33,7 +33,7 @@ class Select2ViewMixin(object):
 
         if display_create_option and self.has_add_permission(self.request):
             create_option = [{
-                'id': q,
+                'id': "%s" % q,
                 'text': _('Create "%(new_value)s"') % {'new_value': q},
                 'create_id': True,
             }]
@@ -75,7 +75,7 @@ class Select2ListView(ViewMixin, View):
             results = [x for x in results if self.q in x]
             if hasattr(self, 'create'):
                 create_option = [{
-                    'id': self.q,
+                    'id': "%s" % self.q,
                     'text': 'Create "%s"' % self.q,
                     'create_id': True
                 }]
@@ -103,6 +103,6 @@ class Select2ListView(ViewMixin, View):
             return http.HttpResponseBadRequest()
 
         return http.HttpResponse(json.dumps({
-            'id': text,
+            'id': "%s" % ctext,
             'text': text,
         }))
