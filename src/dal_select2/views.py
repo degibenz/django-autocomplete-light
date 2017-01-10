@@ -17,7 +17,7 @@ class Select2ViewMixin(object):
         """Return data for the 'results' key of the response."""
         return [
             {
-                'id': self.get_result_value(result),
+                'id': "%s" % self.get_result_value(result),
                 'text': self.get_result_label(result),
             } for result in context['object_list']
         ]
